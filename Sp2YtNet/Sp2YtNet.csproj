@@ -25,4 +25,10 @@
     <PackageReference Include="YoutubeSearchApi.Net" Version="1.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="authSecrets.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
