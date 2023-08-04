@@ -18,12 +18,6 @@ public static class Helpers
         {
             if (memoryStream != null && streamWriter != null)
             {
-                //// Retrieve the captured output from the MemoryStream and display it
-                //memoryStream.Position = 0;
-                //var output = new StreamReader(memoryStream).ReadToEnd();
-                //Console.WriteLine("Captured Output:");
-                //Console.WriteLine(output);
-
                 // Revert the standard output back to the original one
                 Console.SetOut(originalConsoleOut);
 

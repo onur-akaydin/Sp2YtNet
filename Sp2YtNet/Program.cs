@@ -37,7 +37,6 @@ namespace Sp2YtNet
                     }
                     break;
                 case "list-youtube-tracks":
-                    // Implement logic to list existing track names in a specific Youtube playlist
                     if (args.Length < 2)
                     {
                         Console.WriteLine("Please provide the name of the Youtube playlist.");

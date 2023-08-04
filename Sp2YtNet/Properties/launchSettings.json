@@ -1,8 +1,7 @@
 {
   "profiles": {
     "SpotifyToYoutube": {
-      "commandName": "Project",
-      "commandLineArgs": "list-spotify-playlists"
+      "commandName": "Project"
     }
   }
 }
