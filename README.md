@@ -1,5 +1,10 @@
 # Sp2YtNet
-A command line tool for one-way transfer of Spotify playlists to Youtube Music playlists, written in C# .NET
+This is a command line tool for one-way transfer of Spotify playlists to Youtube Music playlists, written in C# .NET, using below libraries:
+
+- [JohnnyCrazy / SpotifyAPI-NET](https://github.com/JohnnyCrazy/SpotifyAPI-NET)
+- [madeyoga / YoutubeSearchApi.Net](https://github.com/madeyoga/YoutubeSearchApi.Net)
+- [Google.Apis.YouTube.v3](https://www.nuget.org/packages/Google.Apis.youtube.v3/)
+- [SpotifyAPI.Web](https://www.nuget.org/packages/SpotifyAPI.Web)
 
 ## What it does
 - List Spotify playlists of the user
