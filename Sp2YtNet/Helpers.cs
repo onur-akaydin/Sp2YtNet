@@ -5,59 +5,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sp2YtNet;
-public static class Helpers
+namespace Sp2YtNet
 {
-    private static MemoryStream memoryStream;
-    private static StreamWriter streamWriter;
-    private static TextWriter originalConsoleOut;
-
-    public static void ActivateOrDeactivateConsoleOutputs(bool isActive)
+    public static class Helpers
     {
-        if (isActive)
-        {
-            if (memoryStream != null && streamWriter != null)
-            {
-                // Revert the standard output back to the original one
-                Console.SetOut(originalConsoleOut);
+        private static MemoryStream memoryStream;
+        private static StreamWriter streamWriter;
+        private static TextWriter originalConsoleOut;
 
-                // Clean up the MemoryStream and StreamWriter
-                streamWriter.Dispose();
-                memoryStream.Dispose();
-                streamWriter = null;
-                memoryStream = null;
+        public static void ActivateOrDeactivateConsoleOutputs(bool isActive)
+        {
+            if (isActive)
+            {
+                if (memoryStream != null && streamWriter != null)
+                {
+                    // Revert the standard output back to the original one
+                    Console.SetOut(originalConsoleOut);
+
+                    // Clean up the MemoryStream and StreamWriter
+                    streamWriter.Dispose();
+                    memoryStream.Dispose();
+                    streamWriter = null;
+                    memoryStream = null;
+                }
+            }
+            else
+            {
+                // Save the original standard output and redirect to a new MemoryStream
+                originalConsoleOut = Console.Out;
+                memoryStream = new MemoryStream();
+                streamWriter = new StreamWriter(memoryStream);
+                Console.SetOut(streamWriter);
             }
         }
-        else
-        {
-            // Save the original standard output and redirect to a new MemoryStream
-            originalConsoleOut = Console.Out;
-            memoryStream = new MemoryStream();
-            streamWriter = new StreamWriter(memoryStream);
-            Console.SetOut(streamWriter);
-        }
-    }
 
-    public static string TrimEndWith(this string str, string suffixToRemove)
-    {
-        if (str.EndsWith(suffixToRemove, StringComparison.InvariantCultureIgnoreCase))
+        public static string TrimEndWith(this string str, string suffixToRemove)
         {
-            return str.Substring(0, str.Length - suffixToRemove.Length);
-        }
-        else
-        {
-            return str;
-        }
-    }
-
-    public static int GetPortFromUri(string uriString)
-    {
-        if (Uri.TryCreate(uriString, UriKind.RelativeOrAbsolute, out Uri uri))
-        {
-            return uri.Port;
+            if (str.EndsWith(suffixToRemove, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return str.Substring(0, str.Length - suffixToRemove.Length);
+            }
+            else
+            {
+                return str;
+            }
         }
 
-        // If the provided string is not a valid URI, return 0 to indicate failure.
-        return 0;
+        public static int GetPortFromUri(string uriString)
+        {
+            if (Uri.TryCreate(uriString, UriKind.RelativeOrAbsolute, out Uri uri))
+            {
+                return uri.Port;
+            }
+
+            // If the provided string is not a valid URI, return 0 to indicate failure.
+            return 0;
+        }
     }
 }
